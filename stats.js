@@ -117,11 +117,11 @@ config.configFile(process.argv[2], function (config, oldConfig) {
           timers[key] = [];
 
           var message = "";
-          message += 'stats.timers.' + key + '.mean ' + mean + ' ' + ts + "\n";
-          message += 'stats.timers.' + key + '.upper ' + max + ' ' + ts + "\n";
-          message += 'stats.timers.' + key + '.upper_' + pctThreshold + ' ' + maxAtThreshold + ' ' + ts + "\n";
-          message += 'stats.timers.' + key + '.lower ' + min + ' ' + ts + "\n";
-          message += 'stats.timers.' + key + '.count ' + count + ' ' + ts + "\n";
+          message += 'stats_timers.' + key + '.mean ' + mean + ' ' + ts + "\n";
+          message += 'stats_timers.' + key + '.upper ' + max + ' ' + ts + "\n";
+          message += 'stats_timers.' + key + '.upper_' + pctThreshold + ' ' + maxAtThreshold + ' ' + ts + "\n";
+          message += 'stats_timers.' + key + '.lower ' + min + ' ' + ts + "\n";
+          message += 'stats_timers.' + key + '.count ' + count + ' ' + ts + "\n";
           statString += message;
 
           numStats += 1;
@@ -129,7 +129,7 @@ config.configFile(process.argv[2], function (config, oldConfig) {
       }
 
       statString += 'statsd.numStats ' + numStats + ' ' + ts + "\n";
-      
+
       try {
         var graphite = net.createConnection(config.graphitePort, config.graphiteHost);
         graphite.addListener('error', function(connectionException){
